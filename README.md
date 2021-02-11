@@ -1,5 +1,25 @@
 # react-sticky-notes
 
+### Key concepts:
+
+#### Sticks move implementation:
+I implemented the necessary logics via custom hooks:
+- `useMovableContext` - hook do define context element where movable component have to be moved
+- `useMovable` - the movable components itself
+- `useDroppable` - the component to precess drop events.
+
+To organize communication between mentioned hooks I implemented `MovableService` which contains main logic.
+
+#### Sticks resize implementation:
+For resizing i used HTML attribute to make a DOM element resizable. 
+As for watching of the resizing I used `ResizeObserver` and `ResizableService` to manage `ResizeObserver`.
+
+#### `LocalStorage` and Backend mock
+To work with `LocalStorage` and Backend I also implemented custom hooks.  
+
+I intentionnaly keep `console.log`s to show main events ('delete note', 'move note', 'resize note' etc.)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
