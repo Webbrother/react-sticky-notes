@@ -40,7 +40,7 @@ const NoteComponent: FunctionComponent<NoteProps> = ({
   const handleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (contentRef.current) contentRef.current.innerText = text;
+    if (contentRef.current) contentRef.current.innerHTML = text;
   }, [text]);
 
   const [isEdit, setIsEdit] = useState(false);
@@ -67,7 +67,7 @@ const NoteComponent: FunctionComponent<NoteProps> = ({
 
   const handleBlur = useCallback(() => {
     setIsEdit(false);
-    onSave(id, contentRef.current!.innerText || '');
+    onSave(id, contentRef.current!.innerHTML || '');
   }, [id, onSave]);
 
   const toggleEdit = useCallback(() => {
