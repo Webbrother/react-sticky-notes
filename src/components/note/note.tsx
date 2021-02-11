@@ -67,7 +67,7 @@ const NoteComponent: FunctionComponent<NoteProps> = ({
 
   const handleBlur = useCallback(() => {
     setIsEdit(false);
-    onSave(id, contentRef.current!.textContent || '');
+    onSave(id, contentRef.current!.innerText || '');
   }, [id, onSave]);
 
   const toggleEdit = useCallback(() => {
