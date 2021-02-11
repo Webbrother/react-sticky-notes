@@ -5,14 +5,16 @@ export const useMovable = <T extends HTMLElement, H extends HTMLElement>(
   movableRef: RefObject<T>,
   handleRef: RefObject<H>,
   onMoveFinish: (coordinates: MovableCoordinates) => void,
+  id: number
 ) => {
   const movableNode = useMemo<MovableNode>(
     () => ({
       movableRef,
       handleRef,
       onMoveFinish,
+      id,
     }),
-    [movableRef, handleRef, onMoveFinish]
+    [movableRef, handleRef, onMoveFinish, id]
   );
 
   useEffect(() => {

@@ -1,3 +1,7 @@
 .movable-handle {
   cursor: move;
 }
+
+.droppable-active {
+  border: 3px dashed red !important;
+}

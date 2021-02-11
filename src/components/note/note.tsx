@@ -96,7 +96,7 @@ const NoteComponent: FunctionComponent<NoteProps> = ({
     [id, onResizeFinish]
   );
 
-  useMovable(movableRef, handleRef, handleMoveFinish);
+  useMovable(movableRef, handleRef, handleMoveFinish, id);
   useResizable(movableRef, handleResizeFinish);
 
   return (

@@ -6,6 +6,7 @@ import { MovableCoordinates } from '../../hooks/movable/movable-service';
 import { ResizableSizes } from '../../hooks/resizable/resizable-service';
 import { CreateNote, NewNote } from '../create-note/create-note';
 import { updateNote, useSaveNotes } from './App.helpers';
+import { DeleteNote } from '../delete-note/delete-note';
 
 export const App = () => {
   const [notes, setNotes, status] = useSaveNotes();
@@ -65,6 +66,8 @@ export const App = () => {
       <CreateNote onSubmit={handleCreateNote} />
 
       {status.loading && 'Saving notes...'}
+
+      <DeleteNote onDrop={handleDeleteNote} />
 
       {notes.map(note => (
         <Note
