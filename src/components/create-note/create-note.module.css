@@ -1,0 +1,26 @@
+.createNote {
+    font-size: 16px;
+    padding: 4px;
+}
+
+.createNote p {
+    margin: 4px 0;
+    font-style: italic;
+    padding: 0 10px;
+}
+
+.createNote label span {
+    width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.createNote input {
+    width: 100px;
+}
+
+
+.createNote button {
+    margin-left: 20px;
+}
