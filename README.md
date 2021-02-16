@@ -1,5 +1,8 @@
 # react-sticky-notes
 
+I've pushed some updates after I share this rep with you, so you can take a look at those improvements at 'development' branch.
+
+
 ### Key concepts:
 
 #### Sticks move implementation:
