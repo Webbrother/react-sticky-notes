@@ -1,37 +1,25 @@
 import { SetStateAction, useCallback, useState } from 'react';
 
+import { storage } from './storage-service';
+
 // Inspired by https://usehooks.com/
 export const useLocalStorage = <T>(
   key: string,
   initialValue: T
 ): [T, (value: SetStateAction<T>) => void] => {
   const [storedValue, setStoredValue] = useState<T>(() => {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.log(error);
-      return initialValue;
-    }
+    return storage.getItem<T>(key) ?? initialValue;
   });
 
   const setValue = useCallback(
     (value: T | ((val: T) => T)) => {
-      try {
-        if (value instanceof Function) {
-          setStoredValue(prevValue => {
-            const nextValue = value(prevValue);
+      setStoredValue(prevState => {
+        const valueToStore = value instanceof Function ? value(prevState) : value;
 
-            window.localStorage.setItem(key, JSON.stringify(nextValue));
-            return nextValue;
-          });
-        } else {
-          setStoredValue(value);
-          window.localStorage.setItem(key, JSON.stringify(value));
-        }
-      } catch (error) {
-        console.log(error);
-      }
+        storage.setItem(key, valueToStore);
+
+        return valueToStore;
+      });
     },
     [key]
   );
