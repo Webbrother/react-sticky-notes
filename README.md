@@ -1,6 +1,6 @@
 # react-sticky-notes
 
-I've pushed some updates after I share this rep with you, so you can take a look at those improvements at 'development' branch.
+I've pushed some updates after I share this rep with you, so you can take a look at those improvements at [development](https://github.com/Webbrother/react-sticky-notes/tree/develop) branch.
 
 
 ### Key concepts:
