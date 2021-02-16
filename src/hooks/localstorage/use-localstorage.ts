@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useCallback, useState } from 'react';
 
 // Inspired by https://usehooks.com/
 export const useLocalStorage = <T>(
@@ -15,16 +15,26 @@ export const useLocalStorage = <T>(
     }
   });
 
-  const setValue = (value: T | ((val: T) => T)) => {
-    try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
+  const setValue = useCallback(
+    (value: T | ((val: T) => T)) => {
+      try {
+        if (value instanceof Function) {
+          setStoredValue(prevValue => {
+            const nextValue = value(prevValue);
 
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+            window.localStorage.setItem(key, JSON.stringify(nextValue));
+            return nextValue;
+          });
+        } else {
+          setStoredValue(value);
+          window.localStorage.setItem(key, JSON.stringify(value));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [key]
+  );
 
   return [storedValue, setValue];
 };
